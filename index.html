@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Yumna! 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #FFFDAB; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      flex-direction: column;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    #revealBtn {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: #006A4E;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+
+    #revealBtn:hover {
+      transform: scale(1.1);
+    }
+
+    #birthdayImg {
+      display: none; 
+      max-width: 90%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    #backBtn {
+      display: none;
+      margin-top: 20px;
+      background: transparent;
+      border: 2px solid #006A4E;
+      color: #006A4E;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: fall 5s linear infinite;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(720deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="revealBtn" onclick="showSurprise()">Click Here for a Surprise! ✨</button>
+
+  <img id="birthdayImg" src="yumna.png" alt="Happy Birthday" style="width:800px;height:500px;">
+
+  <button id="backBtn" onclick="goBack()">← Go Back</button>
+
+  <script>
+    function showSurprise() {
+      document.getElementById('revealBtn').style.display = 'none';
+      document.getElementById('birthdayImg').style.display = 'block';
+      document.getElementById('backBtn').style.display = 'block';
+
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement('div');
+          confetti.classList.add('confetti');
+          confetti.style.left = Math.random() * 100 + 'vw';
+          const greenShades = ['#006A4E', '#004d39', '#123524'];
+          confetti.style.backgroundColor = greenShades[Math.floor(Math.random() * greenShades.length)];
+          confetti.style.width = Math.random() * 8 + 5 + 'px';
+          confetti.style.height = confetti.style.width;
+          confetti.style.animationDuration = (Math.random() * 3 + 3) + 's';
+          document.body.appendChild(confetti);
+        }
+    }
+
+    function goBack() {
+      document.getElementById('revealBtn').style.display = 'block';
+      document.getElementById('birthdayImg').style.display = 'none';
+      document.getElementById('backBtn').style.display = 'none';
+      
+      const allConfetti = document.querySelectorAll('.confetti');
+      allConfetti.forEach(c => c.remove());
+    }
+  </script>
+
+</body>
+</html>
